@@ -1,0 +1,79 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SEO Optimizer Pro</title>
+  <style>
+    :root{--bg:#0b0f19;--card:#121826;--muted:#9aa4b2;--accent:#7c3aed;--ok:#10b981;--err:#ef4444}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#fff;font:16px/1.5 ui-sans-serif,system-ui,Segoe UI,Roboto,Inter,Arial}
+    .wrap{max-width:860px;margin:40px auto;padding:0 16px}
+    .card{background:var(--card);border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    h1{margin:0 0 10px;font-size:28px}
+    p.muted{color:var(--muted);margin-top:0}
+    label{display:block;margin:12px 0 6px;color:#e5e7eb}
+    input[type="text"]{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #2a3141;background:#0f1523;color:#fff;outline:none}
+    input[type="file"]{width:100%;margin-top:8px}
+    .row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+    .row-3{display:grid;gap:12px;grid-template-columns:1fr 1fr 1fr}
+    button{margin-top:16px;padding:12px 16px;border-radius:12px;background:linear-gradient(90deg,var(--accent),#22d3ee);border:0;color:#fff;font-weight:600;cursor:pointer}
+    .flash{margin-top:14px;padding:12px;border-radius:10px;background:#1e293b}
+    .small{font-size:12px;color:#9aa4b2}
+    .grid{display:grid;gap:14px}
+    a{color:#a5b4fc}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>SEO Optimizer Pro</h1>
+      <p class="muted">Upload a <strong>.zip</strong> of your website, set your core SEO fields, and download the optimized site (robots.txt, sitemap.xml, OpenGraph, JSON‑LD, lazy images, minified CSS/JS, and basic image compression).</p>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for msg in messages %}
+          <div class="flash">{{ msg }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      <form method="post" action="/upload" enctype="multipart/form-data" class="grid">
+        <div>
+          <label>Website ZIP</label>
+          <input type="file" name="sitezip" accept=".zip" required>
+          <div class="small">Max ~200MB. Tip: zip your site’s <em>build</em> or <em>dist</em> folder.</div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Title</label>
+            <input type="text" name="title" placeholder="Concrete Miami | Driveways, Patios, Polished Floors" required>
+          </div>
+          <div>
+            <label>Canonical URL</label>
+            <input type="text" name="canonical" placeholder="https://concretemiamiflorida.com" required>
+          </div>
+        </div>
+
+        <div>
+          <label>Description</label>
+          <input type="text" name="description" placeholder="High‑quality concrete in Miami: driveways, patios, polished floors. Free quotes.">
+        </div>
+
+        <div>
+          <label>Keywords (comma‑separated)</label>
+          <input type="text" name="keywords" placeholder="concrete, miami, driveway, patio, polished floors">
+        </div>
+
+        <button type="submit">Optimize & Download</button>
+      </form>
+
+      <p class="small" style="margin-top:12px">
+        Note: This tool rewrites only common SEO head tags (title, description, keywords, canonical, OpenGraph, JSON‑LD) and preserves your <code>&lt;meta charset&gt;</code> and <code>viewport</code>. It defers external scripts and lazily loads images where possible.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
